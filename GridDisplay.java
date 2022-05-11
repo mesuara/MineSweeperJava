@@ -11,6 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.*;
+
 
 
 public class GridDisplay extends JFrame {
@@ -18,6 +22,9 @@ public class GridDisplay extends JFrame {
  	private GridLayout defaultLayout;
   private JPanel panel;
   int win=0;
+  // String sound_track;
+  // Music se = new Music();
+
 
 
   
@@ -55,9 +62,11 @@ JButton[][] buttons =  new JButton[griD.getNumRows()][griD.getNumColumns()];
         int col =j;
 				buttons[i][j].addActionListener(new ActionListener() {
 					@Override
-					public void actionPerformed(ActionEvent e) {
+					public void actionPerformed(ActionEvent event) {
 						if (griD.isBombAtLocation(row, col)) {
-       
+
+              // playSound("bombsound.mp3");
+
 							displayGL(griD, buttons);
               		int reply = JOptionPane.showConfirmDialog(null, "Would you like to play MineSweeper again?", "Bomb exploded", JOptionPane.YES_NO_OPTION);
 		if (reply == JOptionPane.YES_OPTION) {
@@ -128,6 +137,24 @@ JButton[][] buttons =  new JButton[griD.getNumRows()][griD.getNumColumns()];
     }
     return result;
   }
+
+// public void playSound(String soundName)
+//  {
+//    try 
+//    {
+//     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile( ));
+//     Clip clip = AudioSystem.getClip( );
+//     clip.open(audioInputStream);
+//     clip.start( );
+//    }
+//    catch(Exception ex)
+//    {
+//      System.out.println("Error with playing sound.");
+//      ex.printStackTrace( );
+//    }
+//  }
+
+  
   	public static void main(String[] args) {
 		
 		new GridDisplay();
